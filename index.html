@@ -86,12 +86,12 @@
 
 <meta name="description" content="xzliang&apos;s blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="宁静致远">
+<meta property="og:title" content="Thinking and Living">
 <meta property="og:url" content="http://xzliang.github.io/index.html">
-<meta property="og:site_name" content="宁静致远">
+<meta property="og:site_name" content="Thinking and Living">
 <meta property="og:description" content="xzliang&apos;s blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宁静致远">
+<meta name="twitter:title" content="Thinking and Living">
 <meta name="twitter:description" content="xzliang&apos;s blog">
 
 
@@ -110,7 +110,7 @@
   };
 </script>
 
-  <title> 宁静致远 </title>
+  <title> Thinking and Living </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -143,7 +143,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">宁静致远</span>
+      <span class="site-title">Thinking and Living</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -231,6 +231,249 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/16/Problems when setup caffe on windows/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-16T21:29:01+08:00" content="2016-06-16">
+              2016-06-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Install-caffe-on-windows"><a href="#Install-caffe-on-windows" class="headerlink" title="Install caffe on windows"></a>Install caffe on windows</h1><p>前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题</p>
+<p>我是按照happynear大神（感谢大神）的博客教程安装的：<a href="http://blog.csdn.net/happynear/article/details/45372231" target="_blank" rel="external">http://blog.csdn.net/happynear/article/details/45372231</a><br>英文版：<a href="https://github.com/happynear/caffe-windows" target="_blank" rel="external">https://github.com/happynear/caffe-windows</a></p>
+<p>1、我没将每个工程属性中预处理器定义<code>USE_CUDNN</code>删除<br>因为我的显卡太渣，教程里说了</p>
+<blockquote>
+<p>If your GPU’s compute capability is below or equal to 2.1, please remove the USE_CUDNN macro in the proprocessor definition of all projects.  </p>
+</blockquote>
+<p>一开始我还在代码文件里找<code>#define USE_CUDNN</code>，结果发现搜了半天也没搜到，于是就傻傻的在代码里手动添加  </p>
+<pre><code>#ifdef USE_CUDNN    
+    #undef USE_CUNDNN  
+#endif  
+</code></pre><p>结构还是编译失败，后来才知道<code>USE_CUDNN</code>的宏定义放在<code>工程属性</code> -&gt; <code>C/C++</code> -&gt; <code>预处理器</code>里，直接把每个工程里的<code>USE_CUDNN</code>删除掉即可，现在想想自己当时真是傻！</p>
+<p>2、<code>caffelib properties</code> -&gt; <code>CUDA C/C++</code> -&gt; <code>Device</code> -&gt; <code>Code Generation</code>没有修改为自己电脑GPU的compute capability</p>
+<p>一开始太傻了不懂教程里这句话是什么意思  </p>
+<blockquote>
+<p>Modify the cuda device compute capability defined in the settings (caffelib properties -&gt; CUDA C/C++ -&gt; Device -&gt; Code Generation) to your GPU’s compute capability (such as compute_30,sm_30; etc). You can look up for your GPU’s compute capability in <a href="https://en.wikipedia.org/wiki/CUDA" target="_blank" rel="external">https://en.wikipedia.org/wiki/CUDA</a> .</p>
+</blockquote>
+<p>然后我解决上面<code>USE_CUDNN</code>的问题后就直接编译了，一切也很顺利，编译通过了，可是当运行教程里的例子是一直出错，提示：<code>Check failed: error == cudaSuccess (8 vs. 0)  invalid device function</code>，上谷歌搜也没解决得了，还重装了遍cuda，因为有人说是因为cuda没安装好，可是结果还是一样的。</p>
+<p>然后就一直搁置到今天，我又开始折腾，重新看了遍教程，点开<code>caffelib properties</code> -&gt; <code>CUDA C/C++</code> -&gt; <code>Device</code> -&gt; <code>Code Generation</code>，然后瞬间似乎明白了什么，我的GPU（GT630M）的Compute Capability在<a href="https://en.wikipedia.org/wiki/CUDA" target="_blank" rel="external">https://en.wikipedia.org/wiki/CUDA</a>里写的是2.1,而<code>Code Generation</code>属性项里的默认值是<code>compute_30,sm_30</code>，我就想这个30是不是就对应3.0的GPU Compute Capability，而我的GPU对应的<code>Code Generation</code>应该设置为<code>compute_21,sm_21</code>，然后试了下编译失败，谷歌了一下，才发现cuda v7.5不支持gpu architecture ‘compute_21’，需要改为<code>compute_20,sm_20</code>，然后就成功编译并运行了。自己当时真是傻，这个小问题竟然困扰了这么久!<br>这里是cuda documentation里的<a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list" target="_blank" rel="external">Virtual Architecture Feature List</a>和<a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list" target="_blank" rel="external">GPU Feature List</a>.</p>
+<p>3、经过上面折腾，最后终于编译成功了，MNIST example也终于可以跑了，可是还没跑完这个例子电脑就已经烫的可以煎鸡蛋了，于是只能赶紧关了。唉，最终还是不能用，白折腾！</p>
+<p>4、MS的Windows caffe我也装了一下，编译成功了，但是没跑过例子，也不知有什么问题。编译过程中，由于我将VS2013安装在D盘，然后就一直出现：<code>error MSB3030: 无法复制文件“C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\redist\x64\Microsoft.VC120.CRT\msvcr120.dll</code>错误，搜了一下，<a href="http://blog.csdn.net/K3832127/article/details/50819464" target="_blank" rel="external">http://blog.csdn.net/K3832127/article/details/50819464</a>里说找到安装目录下相应文件，整个复制到它这个位置即可，但我一直想有其他优雅点的解决方法吗，找了几天一直没解决，最后没办法只能复制过去了，然后就编译通过了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/16/Setup blog site with github pages and hexo/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-16T21:29:01+08:00" content="2016-06-16">
+              2016-06-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="利用GitHub-Pages和Hexo搭建个人博客"><a href="#利用GitHub-Pages和Hexo搭建个人博客" class="headerlink" title="利用GitHub Pages和Hexo搭建个人博客"></a>利用GitHub Pages和Hexo搭建个人博客</h1><hr>
+<h2 id="安装前介绍"><a href="#安装前介绍" class="headerlink" title="安装前介绍"></a>安装前介绍</h2><p>在进行接下来操作之前，先花点时间了解下 <a href="https://help.github.com/categories/github-pages-basics/" target="_blank" rel="external">Github Pages</a>和 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo</a></p>
+<blockquote>
+<p>GitHub Pages are public webpages hosted and published through our site.<br>GitHub Pages is designed to host your personal, organization, or project pages directly from a GitHub repository.</p>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。作者 Tommy Chen：<a href="https://zespia.tw/" target="_blank" rel="external">https://zespia.tw/</a>.</p>
+</blockquote>
+<h2 id="创建一个Github-pages"><a href="#创建一个Github-pages" class="headerlink" title="创建一个Github pages"></a>创建一个Github pages</h2><p>在你的github账号里新建一个repository，名字为 <em>username</em>.github.io ，其中username为你账号的用户名</p>
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>下载<a href="https://nodejs.org/en/download/" target="_blank" rel="external">Node.js</a>安装包，一路next</p>
+<h2 id="安装github-desktop"><a href="#安装github-desktop" class="headerlink" title="安装github desktop"></a>安装github desktop</h2><p>下载<a href="https://desktop.github.com/" target="_blank" rel="external">github desktop</a>安装包，一路next</p>
+<h2 id="安装Hexo博客框架"><a href="#安装Hexo博客框架" class="headerlink" title="安装Hexo博客框架"></a>安装Hexo博客框架</h2><p>在Github desktop默认目录下建立一个Hexo文件夹，你也可以命名为其他或者放在其他地方<br>进入git bash，cd到你刚刚建立的目录，执行下面命令：</p>
+<pre><code>$ npm install hexo-cli -g
+$ hexo init
+$ npm install
+$ hexo server -p 5000
+</code></pre><p>现在用浏览器访问localhost：5000就可预览初始页面。<br>（如果不能访问可能是5000端口被其他进程占用了，换个其他端口即可）</p>
+<h2 id="将博客部署到GitHub"><a href="#将博客部署到GitHub" class="headerlink" title="将博客部署到GitHub"></a>将博客部署到GitHub</h2><p>上面博客只是存放在本地，要将其部署到Github上，从而通过<code>http://*username*.github.io</code>访问，需进行如下设置:  </p>
+<p>1、进入git bash，运行如下命令  </p>
+<pre><code>$ npm install hexo-deployer-git --save
+</code></pre><p>2、在 Hexo 文件夹下找到 _config.yml 文件，按如下编辑<code>deploy</code>字段（如果没有就自己新建）  </p>
+<pre><code>deploy:
+    type: git
+    repo: &lt;repository url&gt;
+    branch: master
+</code></pre><p>其中，<code>&lt;repository url&gt;</code>为你<code>*username*.github.io</code>仓库的url地址</p>
+<p>3、进入git bash，进入Hexo目录下，运行如下命令即可</p>
+<pre><code>$ hexo deploy
+</code></pre><p>现在，你可以在浏览器访问<code>http://*username*.github.io</code>查看你的博客了</p>
+<h2 id="个性化"><a href="#个性化" class="headerlink" title="个性化"></a>个性化</h2><p>你可以为Hexo安装不同的主题，从而个性化设置你的博客页面<br>我选择安装NexT主题，安装教程：<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">安装NexT主题</a></p>
+<h2 id="使用博客"><a href="#使用博客" class="headerlink" title="使用博客"></a>使用博客</h2><p>1、新建博文<br>进入git bash，执行</p>
+<pre><code>$ hexo new &quot;post name&quot;
+</code></pre><p>命令执行完后，就会发现在 <code>Hexo\source\_posts</code> 目录中多了一个<code>post name.md</code>文件，这就是我们刚才新建的博文。</p>
+<p>2、撰写博文<br>接下来，我们可以用Markdown编辑器撰写我们的博文。<br>我使用的是<a href="http://markdownpad.com/download.html" target="_blank" rel="external">Markdown Pad2编辑器</a></p>
+<p>3、发表博文<br>进入git bash，执行</p>
+<pre><code>$ hexo generate
+$ hexo deploy
+</code></pre><p>然后你就可以访问<code>http://*username*.github.io</code>查看你的新文章了</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://sunwhut.com/2015/10/30/buildBlog/" target="_blank" rel="external">如何利用GitHub Pages和Hexo快速搭建个人博客</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -375,7 +618,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
