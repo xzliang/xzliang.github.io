@@ -84,22 +84,25 @@
 
 
 
-<meta name="description" content="Install caffe on windows前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
-我是按照happynear大神（感谢大神）的博客教程安装的：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
-1、我没">
+<meta name="description" content="前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
+
+我是按照happynear大神（感谢大神）的博客教程安装的中文版：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
+1、我没将每个工程属性中预处理器定义USE_C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thinking and Living">
+<meta property="og:title" content="Install caffe on windows">
 <meta property="og:url" content="http://xzliang.github.io/2016/06/16/Problems when setup caffe on windows/index.html">
 <meta property="og:site_name" content="Thinking and Living">
-<meta property="og:description" content="Install caffe on windows前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
-我是按照happynear大神（感谢大神）的博客教程安装的：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
-1、我没">
-<meta property="og:updated_time" content="2016-06-16T12:26:44.358Z">
+<meta property="og:description" content="前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
+
+我是按照happynear大神（感谢大神）的博客教程安装的中文版：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
+1、我没将每个工程属性中预处理器定义USE_C">
+<meta property="og:updated_time" content="2016-06-16T13:43:03.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thinking and Living">
-<meta name="twitter:description" content="Install caffe on windows前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
-我是按照happynear大神（感谢大神）的博客教程安装的：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
-1、我没">
+<meta name="twitter:title" content="Install caffe on windows">
+<meta name="twitter:description" content="前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
+
+我是按照happynear大神（感谢大神）的博客教程安装的中文版：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
+1、我没将每个工程属性中预处理器定义USE_C">
 
 
 
@@ -117,7 +120,7 @@
   };
 </script>
 
-  <title>  | Thinking and Living </title>
+  <title> Install caffe on windows | Thinking and Living </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +260,7 @@
             
             
               
-                
+                Install caffe on windows
               
             
           </h1>
@@ -269,11 +272,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-16T21:29:01+08:00" content="2016-06-16">
+            <time itemprop="dateCreated" datetime="2016-06-16T20:16:32+08:00" content="2016-06-16">
               2016-06-16
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/caffe/" itemprop="url" rel="index">
+                    <span itemprop="name">caffe</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -297,8 +319,10 @@
       
 
       
-        <h1 id="Install-caffe-on-windows"><a href="#Install-caffe-on-windows" class="headerlink" title="Install caffe on windows"></a>Install caffe on windows</h1><p>前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题</p>
-<p>我是按照happynear大神（感谢大神）的博客教程安装的：<a href="http://blog.csdn.net/happynear/article/details/45372231" target="_blank" rel="external">http://blog.csdn.net/happynear/article/details/45372231</a><br>英文版：<a href="https://github.com/happynear/caffe-windows" target="_blank" rel="external">https://github.com/happynear/caffe-windows</a></p>
+        <blockquote>
+<p><em>前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题</em></p>
+</blockquote>
+<p>我是按照happynear大神（感谢大神）的博客教程安装的<br>中文版：<a href="http://blog.csdn.net/happynear/article/details/45372231" target="_blank" rel="external">http://blog.csdn.net/happynear/article/details/45372231</a><br>英文版：<a href="https://github.com/happynear/caffe-windows" target="_blank" rel="external">https://github.com/happynear/caffe-windows</a></p>
 <p>1、我没将每个工程属性中预处理器定义<code>USE_CUDNN</code>删除<br>因为我的显卡太渣，教程里说了</p>
 <blockquote>
 <p>If your GPU’s compute capability is below or equal to 2.1, please remove the USE_CUDNN macro in the proprocessor definition of all projects.  </p>
@@ -307,7 +331,8 @@
 <pre><code>#ifdef USE_CUDNN    
     #undef USE_CUNDNN  
 #endif  
-</code></pre><p>结构还是编译失败，后来才知道<code>USE_CUDNN</code>的宏定义放在<code>工程属性</code> -&gt; <code>C/C++</code> -&gt; <code>预处理器</code>里，直接把每个工程里的<code>USE_CUDNN</code>删除掉即可，现在想想自己当时真是傻！</p>
+</code></pre><p>结果还是编译失败，后来才知道<code>USE_CUDNN</code>的宏定义放在<code>工程属性</code> -&gt; <code>C/C++</code> -&gt; <code>预处理器</code>里，直接把每个工程里的<code>USE_CUDNN</code>删除掉即可，现在想想自己当时真是傻！</p>
+<a id="more"></a>
 <p>2、<code>caffelib properties</code> -&gt; <code>CUDA C/C++</code> -&gt; <code>Device</code> -&gt; <code>Code Generation</code>没有修改为自己电脑GPU的compute capability</p>
 <p>一开始太傻了不懂教程里这句话是什么意思  </p>
 <blockquote>
@@ -341,13 +366,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/16/Setup blog site with github pages and hexo/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2016/06/01/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/16/Setup blog site with github pages and hexo/" rel="prev" title="利用GitHub Pages和Hexo搭建个人博客">
+                利用GitHub Pages和Hexo搭建个人博客 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -421,6 +450,13 @@
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
 
@@ -447,7 +483,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-caffe-on-windows"><span class="nav-number">1.</span> <span class="nav-text">Install caffe on windows</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
