@@ -96,7 +96,7 @@
 
 我是按照happynear大神（感谢大神）的博客教程安装的中文版：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
 1、我没将每个工程属性中预处理器定义USE_C">
-<meta property="og:updated_time" content="2016-06-16T13:43:03.315Z">
+<meta property="og:updated_time" content="2016-06-16T13:46:28.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install caffe on windows">
 <meta name="twitter:description" content="前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
@@ -272,7 +272,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-16T20:16:32+08:00" content="2016-06-16">
+            <time itemprop="dateCreated" datetime="2016-06-16T21:16:32+08:00" content="2016-06-16">
               2016-06-16
             </time>
           </span>
@@ -327,12 +327,12 @@
 <blockquote>
 <p>If your GPU’s compute capability is below or equal to 2.1, please remove the USE_CUDNN macro in the proprocessor definition of all projects.  </p>
 </blockquote>
+<a id="more"></a>
 <p>一开始我还在代码文件里找<code>#define USE_CUDNN</code>，结果发现搜了半天也没搜到，于是就傻傻的在代码里手动添加  </p>
 <pre><code>#ifdef USE_CUDNN    
     #undef USE_CUNDNN  
 #endif  
 </code></pre><p>结果还是编译失败，后来才知道<code>USE_CUDNN</code>的宏定义放在<code>工程属性</code> -&gt; <code>C/C++</code> -&gt; <code>预处理器</code>里，直接把每个工程里的<code>USE_CUDNN</code>删除掉即可，现在想想自己当时真是傻！</p>
-<a id="more"></a>
 <p>2、<code>caffelib properties</code> -&gt; <code>CUDA C/C++</code> -&gt; <code>Device</code> -&gt; <code>Code Generation</code>没有修改为自己电脑GPU的compute capability</p>
 <p>一开始太傻了不懂教程里这句话是什么意思  </p>
 <blockquote>
@@ -366,17 +366,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/01/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/06/16/Setup blog site with github pages and hexo/" rel="next" title="利用GitHub Pages和Hexo搭建个人博客">
+                <i class="fa fa-chevron-left"></i> 利用GitHub Pages和Hexo搭建个人博客
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/16/Setup blog site with github pages and hexo/" rel="prev" title="利用GitHub Pages和Hexo搭建个人博客">
-                利用GitHub Pages和Hexo搭建个人博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
