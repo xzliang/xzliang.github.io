@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="caffe," />
 
 
 
@@ -96,7 +96,7 @@
 
 我是按照happynear大神（感谢大神）的博客教程安装的中文版：http://blog.csdn.net/happynear/article/details/45372231英文版：https://github.com/happynear/caffe-windows
 1、我没将每个工程属性中预处理器定义USE_C">
-<meta property="og:updated_time" content="2016-06-16T13:46:28.113Z">
+<meta property="og:updated_time" content="2016-06-16T13:51:08.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install caffe on windows">
 <meta name="twitter:description" content="前段时间尝试在Windows上安装caffe，今天终于成功了，记录下遇到的问题
@@ -286,8 +286,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/caffe/" itemprop="url" rel="index">
-                    <span itemprop="name">caffe</span>
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
                   </a>
                 </span>
 
@@ -339,7 +339,10 @@
 <p>Modify the cuda device compute capability defined in the settings (caffelib properties -&gt; CUDA C/C++ -&gt; Device -&gt; Code Generation) to your GPU’s compute capability (such as compute_30,sm_30; etc). You can look up for your GPU’s compute capability in <a href="https://en.wikipedia.org/wiki/CUDA" target="_blank" rel="external">https://en.wikipedia.org/wiki/CUDA</a> .</p>
 </blockquote>
 <p>然后我解决上面<code>USE_CUDNN</code>的问题后就直接编译了，一切也很顺利，编译通过了，可是当运行教程里的例子是一直出错，提示：<code>Check failed: error == cudaSuccess (8 vs. 0)  invalid device function</code>，上谷歌搜也没解决得了，还重装了遍cuda，因为有人说是因为cuda没安装好，可是结果还是一样的。</p>
-<p>然后就一直搁置到今天，我又开始折腾，重新看了遍教程，点开<code>caffelib properties</code> -&gt; <code>CUDA C/C++</code> -&gt; <code>Device</code> -&gt; <code>Code Generation</code>，然后瞬间似乎明白了什么，我的GPU（GT630M）的Compute Capability在<a href="https://en.wikipedia.org/wiki/CUDA" target="_blank" rel="external">https://en.wikipedia.org/wiki/CUDA</a>里写的是2.1,而<code>Code Generation</code>属性项里的默认值是<code>compute_30,sm_30</code>，我就想这个30是不是就对应3.0的GPU Compute Capability，而我的GPU对应的<code>Code Generation</code>应该设置为<code>compute_21,sm_21</code>，然后试了下编译失败，谷歌了一下，才发现cuda v7.5不支持gpu architecture ‘compute_21’，需要改为<code>compute_20,sm_20</code>，然后就成功编译并运行了。自己当时真是傻，这个小问题竟然困扰了这么久!<br>这里是cuda documentation里的<a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list" target="_blank" rel="external">Virtual Architecture Feature List</a>和<a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list" target="_blank" rel="external">GPU Feature List</a>.</p>
+<p>然后就一直搁置到今天，我又开始折腾，重新看了遍教程，点开<code>caffelib properties</code> -&gt; <code>CUDA C/C++</code> -&gt; <code>Device</code> -&gt; <code>Code Generation</code>，然后瞬间似乎明白了什么，我的GPU（GT630M）的Compute Capability在<a href="https://en.wikipedia.org/wiki/CUDA" target="_blank" rel="external">https://en.wikipedia.org/wiki/CUDA</a>里写的是2.1,而<code>Code Generation</code>属性项里的默认值是<code>compute_30,sm_30</code>，我就想这个30是不是就对应3.0的GPU Compute Capability，而我的GPU对应的<code>Code Generation</code>应该设置为<code>compute_21,sm_21</code>，然后试了下编译失败，谷歌了一下，才发现cuda v7.5不支持gpu architecture ‘compute_21’，需要改为<code>compute_20,sm_20</code>，然后就成功编译并运行了。自己当时真是傻，这个小问题竟然困扰了这么久!  </p>
+<blockquote>
+<p>这里是cuda documentation里的<a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list" target="_blank" rel="external">Virtual Architecture Feature List</a>和<a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list" target="_blank" rel="external">GPU Feature List</a>.</p>
+</blockquote>
 <p>3、经过上面折腾，最后终于编译成功了，MNIST example也终于可以跑了，可是还没跑完这个例子电脑就已经烫的可以煎鸡蛋了，于是只能赶紧关了。唉，最终还是不能用，白折腾！</p>
 <p>4、MS的Windows caffe我也装了一下，编译成功了，但是没跑过例子，也不知有什么问题。编译过程中，由于我将VS2013安装在D盘，然后就一直出现：<code>error MSB3030: 无法复制文件“C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\redist\x64\Microsoft.VC120.CRT\msvcr120.dll</code>错误，搜了一下，<a href="http://blog.csdn.net/K3832127/article/details/50819464" target="_blank" rel="external">http://blog.csdn.net/K3832127/article/details/50819464</a>里说找到安装目录下相应文件，整个复制到它这个位置即可，但我一直想有其他优雅点的解决方法吗，找了几天一直没解决，最后没办法只能复制过去了，然后就编译通过了。</p>
 
@@ -360,6 +363,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/caffe/" rel="tag">#caffe</a>
+          
+        </div>
       
 
       
@@ -454,6 +463,13 @@
             </div>
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
