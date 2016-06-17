@@ -1,0 +1,4 @@
+# Create at 2016-6-18 00:00:43
+User-agent: *
+Disallow: /
+Crawl-delay: 120

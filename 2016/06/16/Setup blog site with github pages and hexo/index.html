@@ -94,7 +94,7 @@ GitHub Pages are public webpages hosted and published through our site.GitHub Pa
 <meta property="og:description" content="安装前介绍在进行接下来操作之前，先花点时间了解下 Github Pages和 Hexo
 
 GitHub Pages are public webpages hosted and published through our site.GitHub Pages is designed to host your personal, organization, or project pages direc">
-<meta property="og:updated_time" content="2016-06-16T13:45:44.977Z">
+<meta property="og:updated_time" content="2016-06-16T13:57:48.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用GitHub Pages和Hexo搭建个人博客">
 <meta name="twitter:description" content="安装前介绍在进行接下来操作之前，先花点时间了解下 Github Pages和 Hexo
@@ -128,6 +128,21 @@ GitHub Pages are public webpages hosted and published through our site.GitHub Pa
 
 
 
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=56887838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259596093&web_id=1259596093" type="text/javascript"></script>
+  </div>
 
 
 
@@ -331,7 +346,7 @@ $ hexo init
 $ npm install
 $ hexo server -p 5000
 </code></pre><p>现在用浏览器访问localhost：5000就可预览初始页面。<br>（如果不能访问可能是5000端口被其他进程占用了，换个其他端口即可）</p>
-<h2 id="将博客部署到GitHub"><a href="#将博客部署到GitHub" class="headerlink" title="将博客部署到GitHub"></a>将博客部署到GitHub</h2><p>上面博客只是存放在本地，要将其部署到Github上，从而通过<code>http://*username*.github.io</code>访问，需进行如下设置:  </p>
+<h2 id="将博客部署到GitHub"><a href="#将博客部署到GitHub" class="headerlink" title="将博客部署到GitHub"></a>将博客部署到GitHub</h2><p>上面博客只是存放在本地，要将其部署到Github上，从而通过<code>http://username.github.io</code>访问，需进行如下设置:  </p>
 <p>1、进入git bash，运行如下命令  </p>
 <pre><code>$ npm install hexo-deployer-git --save
 </code></pre><p>2、在 Hexo 文件夹下找到 _config.yml 文件，按如下编辑<code>deploy</code>字段（如果没有就自己新建）  </p>
@@ -339,7 +354,7 @@ $ hexo server -p 5000
     type: git
     repo: &lt;repository url&gt;
     branch: master
-</code></pre><p>其中，<code>&lt;repository url&gt;</code>为你<code>*username*.github.io</code>仓库的url地址</p>
+</code></pre><p>其中，<code>&lt;repository url&gt;</code>为你<code>username.github.io</code>仓库的url地址</p>
 <p>3、进入git bash，进入Hexo目录下，运行如下命令即可</p>
 <pre><code>$ hexo deploy
 </code></pre><p>现在，你可以在浏览器访问<code>http://*username*.github.io</code>查看你的博客了</p>
@@ -351,7 +366,7 @@ $ hexo server -p 5000
 <p>3、发表博文<br>进入git bash，执行</p>
 <pre><code>$ hexo generate
 $ hexo deploy
-</code></pre><p>然后你就可以访问<code>http://*username*.github.io</code>查看你的新文章了</p>
+</code></pre><p>然后你就可以访问<code>http://username.github.io</code>查看你的新文章了</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://sunwhut.com/2015/10/30/buildBlog/" target="_blank" rel="external">如何利用GitHub Pages和Hexo快速搭建个人博客</a></p>
 
       
